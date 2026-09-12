@@ -6,4 +6,10 @@ pluginManagement {
     }
 }
 
+plugins {
+    // Lässt Gradle automatisch eine passende Java-25-Toolchain herunterladen,
+    // auch wenn Gradle selbst auf einer älteren Java-Version läuft.
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '0.8.0'
+}
+
 rootProject.name = "kelptweaks"
