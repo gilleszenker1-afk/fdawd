@@ -14,11 +14,13 @@ jobs:
       - name: Repository auschecken
         uses: actions/checkout@v4
 
-      - name: Java 25 einrichten
+      - name: Java 21 einrichten (zum Ausführen von Gradle)
         uses: actions/setup-java@v4
         with:
-          java-version: '25'
+          java-version: '21'
           distribution: 'temurin'
+      # Java 25 zum Kompilieren des Mods wird von Gradle selbst über den
+      # foojay-resolver in settings.gradle automatisch heruntergeladen.
 
       - name: Gradle einrichten
         uses: gradle/actions/setup-gradle@v4
