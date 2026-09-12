@@ -1,0 +1,35 @@
+name: Build Kelp Tweaks
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: Java 25 einrichten
+        uses: actions/setup-java@v4
+        with:
+          java-version: '25'
+          distribution: 'temurin'
+
+      - name: Gradle einrichten
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10'
+
+      - name: Mod bauen
+        run: gradle build --stacktrace
+
+      - name: Gebauten Mod-Jar als Artefakt hochladen
+        uses: actions/upload-artifact@v4
+        with:
+          name: kelptweaks-jar
+          path: build/libs/*.jar
